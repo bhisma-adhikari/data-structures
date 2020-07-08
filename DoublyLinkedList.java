@@ -7,6 +7,7 @@
 // - peekAt(index)              --> element
 
 import java.util.StringJoiner;
+import java.util.Iterator;
 
 class DoublyLinkedList<T> {
     private Node<T> head;
@@ -45,6 +46,22 @@ class DoublyLinkedList<T> {
             n = n.next;
         }
         return sj.toString();
+    }
+
+
+    public java.util.Iterator<T> iterator() {
+        return new java.util.Iterator<T>() {
+            int index = 0; 
+
+            @Override 
+            public boolean hasNext() {
+                return index < size;
+            }
+            @Override
+            public T next() {
+                return peekAt(index++); 
+            }
+        }; 
     }
 
     private Node<T> getNodeAt(int index) {
@@ -153,6 +170,12 @@ class DoublyLinkedList<T> {
         System.out.println(dll);
 
         System.out.println(dll.peekAt(3));
+
+        Iterator itr = dll.iterator(); 
+        System.out.println();
+        while (itr.hasNext()) {
+            System.out.println(itr.next());
+        }
 
     }
 }
