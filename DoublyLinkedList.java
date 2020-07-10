@@ -7,6 +7,7 @@
 // - append(element)            --> void            O(1)
 // - peekAt(index)              --> element         O(n)
 // - removeTail()               --> element         O(1) 
+// - contains()                 --> boolean         O(n) 
 
 import java.util.StringJoiner;
 import java.util.Iterator;
@@ -152,12 +153,12 @@ public class DoublyLinkedList<T> implements Iterable<T> {
             return false;
         }
 
-        Node trav = this.head;
+        Node<T> trav = this.head;
         while (trav != null) {
             if (trav.data == elem) {
                 // we could reuse the method removeAt() by tracking index
                 // That would simplify code, but would be inefficient
-                
+
                 if (trav.prev == null) { // trav is head
                     this.head = trav.next;
                 } else {
@@ -191,6 +192,20 @@ public class DoublyLinkedList<T> implements Iterable<T> {
             throw new RuntimeException("Cannot remove element from empty linked-list");
         }
         return this.removeAt(this.size - 1);
+    }
+
+    public boolean contains(T elem) {
+        if (this.size == 0) {
+            return false;
+        }
+        Node<T> trav = this.head;
+        while (trav != null) {
+            if (trav.data == elem) {
+                return true;
+            }
+            trav = trav.next;
+        }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -230,6 +245,8 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         System.out.println(dll);
         System.out.println(dll.remove(8));
         System.out.println(dll);
+
+        System.out.println(dll.contains(5));
 
     }
 }
