@@ -1,19 +1,23 @@
 // This program implements DOUBLY-LINKED-LIST 
 
 // AVAILABLE METHODS: 
-// - insertAt(element, index)   --> void 
-// - removeAt(index)            --> element 
-// - append(element)            --> void 
-// - peekAt(index)              --> element
+// - insertAt(element, index)   --> void            O(n)  
+// - removeAt(index)            --> element         O(n)  
+// - append(element)            --> void            O(1)
+// - peekAt(index)              --> element         O(n)
+// - removeTail()               --> element         O(1) 
 
 import java.util.StringJoiner;
 import java.util.Iterator;
 
-class DoublyLinkedList<T> {
+public class DoublyLinkedList<T> implements Iterable<T> {
     private Node<T> head;
     private Node<T> tail;
     private int size; // will be used to check validity of index
 
+    // TODO: don't know why 'static' is used. (removing 'static' seems to have no
+    // effect)
+    // I just copied it from what was done in william-fiset's code
     private static class Node<T> {
         private T data;
         private Node<T> prev;
@@ -48,20 +52,20 @@ class DoublyLinkedList<T> {
         return sj.toString();
     }
 
-
     public java.util.Iterator<T> iterator() {
         return new java.util.Iterator<T>() {
-            int index = 0; 
+            int index = 0;
 
-            @Override 
+            @Override
             public boolean hasNext() {
                 return index < size;
             }
+
             @Override
             public T next() {
-                return peekAt(index++); 
+                return peekAt(index++);
             }
-        }; 
+        };
     }
 
     private Node<T> getNodeAt(int index) {
@@ -124,7 +128,9 @@ class DoublyLinkedList<T> {
             // remove first element
             data = this.head.data;
             this.head = this.head.next;
-            this.head.prev = null;
+            if (this.head != null) {
+                this.head.prev = null;
+            }
         } else if (index == this.size - 1) {
             // remove last element
             data = this.tail.data;
@@ -149,6 +155,13 @@ class DoublyLinkedList<T> {
         return this.getNodeAt(index).data;
     }
 
+    public T removeTail() {
+        if (this.size == 0) {
+            throw new RuntimeException("Cannot remove element from empty linked-list");
+        }
+        return this.removeAt(this.size - 1);
+    }
+
     public static void main(String[] args) {
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
         dll.insertAt(44, 0);
@@ -171,11 +184,22 @@ class DoublyLinkedList<T> {
 
         System.out.println(dll.peekAt(3));
 
-        Iterator itr = dll.iterator(); 
+        Iterator itr = dll.iterator();
         System.out.println();
         while (itr.hasNext()) {
             System.out.println(itr.next());
         }
+
+        dll.insertAt(3, 0);
+
+        System.out.println(dll);
+        System.out.println(dll.removeTail());
+        System.out.println(dll.removeTail());
+        System.out.println(dll.removeTail());
+        System.out.println(dll.removeTail());
+        System.out.println(dll.removeTail());
+        System.out.println(dll.removeTail());
+        System.out.println(dll.removeTail());
 
     }
 }
