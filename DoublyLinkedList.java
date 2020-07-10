@@ -157,10 +157,16 @@ public class DoublyLinkedList<T> implements Iterable<T> {
             if (trav.data == elem) {
                 // we could reuse the method removeAt() by tracking index
                 // That would simplify code, but would be inefficient
-                if (trav.prev != null) {
+                
+                if (trav.prev == null) { // trav is head
+                    this.head = trav.next;
+                } else {
                     trav.prev.next = trav.next;
                 }
-                if (trav.next != null) {
+
+                if (trav.next == null) { // trav is tail
+                    this.tail = trav.prev;
+                } else {
                     trav.next.prev = trav.prev;
                 }
                 this.size--;
@@ -222,7 +228,7 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         System.out.println(dll.removeTail());
 
         System.out.println(dll);
-        System.out.println(dll.remove(5));
+        System.out.println(dll.remove(8));
         System.out.println(dll);
 
     }
