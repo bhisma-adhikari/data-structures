@@ -2,7 +2,8 @@
 
 // AVAILABLE METHODS: 
 // - insertAt(element, index)   --> void            O(n)  
-// - removeAt(index)            --> element         O(n)  
+// - removeAt(index)            --> element         O(n) 
+// - remove(element)            --> boolean         O(n)    removes first occurrence of the element (returns true if an element was removed, else returns false)
 // - append(element)            --> void            O(1)
 // - peekAt(index)              --> element         O(n)
 // - removeTail()               --> element         O(1) 
@@ -146,6 +147,30 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         return data;
     }
 
+    public boolean remove(T elem) {
+        if (this.size == 0) {
+            return false;
+        }
+
+        Node trav = this.head;
+        while (trav != null) {
+            if (trav.data == elem) {
+                // we could reuse the method removeAt() by tracking index
+                // That would simplify code, but would be inefficient
+                if (trav.prev != null) {
+                    trav.prev.next = trav.next;
+                }
+                if (trav.next != null) {
+                    trav.next.prev = trav.prev;
+                }
+                this.size--;
+                return true;
+            }
+            trav = trav.next;
+        }
+        return false;
+    }
+
     public void append(T elem) {
         this.insertAt(elem, this.size);
     }
@@ -195,11 +220,10 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         System.out.println(dll);
         System.out.println(dll.removeTail());
         System.out.println(dll.removeTail());
-        System.out.println(dll.removeTail());
-        System.out.println(dll.removeTail());
-        System.out.println(dll.removeTail());
-        System.out.println(dll.removeTail());
-        System.out.println(dll.removeTail());
+
+        System.out.println(dll);
+        System.out.println(dll.remove(5));
+        System.out.println(dll);
 
     }
 }
