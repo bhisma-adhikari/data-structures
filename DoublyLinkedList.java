@@ -8,6 +8,7 @@
 // - peekAt(index)              --> element         O(n)
 // - removeTail()               --> element         O(1) 
 // - contains()                 --> boolean         O(n) 
+// - isEmpty()                  --> boolean         O(1) 
 
 import java.util.StringJoiner;
 import java.util.Iterator;
@@ -208,6 +209,10 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         return false;
     }
 
+    public boolean isEmpty() {
+        return this.size == 0;
+    }
+
     public static void main(String[] args) {
         DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
         dll.insertAt(44, 0);
@@ -247,6 +252,7 @@ public class DoublyLinkedList<T> implements Iterable<T> {
         System.out.println(dll);
 
         System.out.println(dll.contains(5));
+        System.out.println(dll.isEmpty());
 
     }
 }
