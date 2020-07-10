@@ -7,10 +7,11 @@
 // AVAILABLE METHODS: 
 // - enqueue(element)   --> void (adds element to the back of the queue)            O(1)
 // - dequeue()          --> element (removes element from the front of the queue)   O(1)
-// - peek               --> element (returns the value at front of the queue)       O(1)
+// - peek()               --> element (returns the value at front of the queue)     O(1)
 // - remove(element)    --> element                                                 O(n)
 // - contains(element)  --> boolean                                                 O(n)
 // - isEmpty()          --> boolean                                                 O(1)
+// - getSize()          --> int                                                     O(1)
 
 class Queue<T> {
     private DoublyLinkedList<T> dll;
@@ -46,6 +47,10 @@ class Queue<T> {
 
     public boolean isEmpty() {
         return this.dll.isEmpty();
+    }
+
+    public int getSize() {
+        return this.dll.getSize();
     }
 
     public static void main(String[] args) {

@@ -9,6 +9,8 @@
 // - removeTail()               --> element         O(1) 
 // - contains()                 --> boolean         O(n) 
 // - isEmpty()                  --> boolean         O(1) 
+// - getSize()                  --> int             O(1)
+
 
 import java.util.StringJoiner;
 import java.util.Iterator;
@@ -211,6 +213,10 @@ public class DoublyLinkedList<T> implements Iterable<T> {
 
     public boolean isEmpty() {
         return this.size == 0;
+    }
+
+    public int getSize() {
+        return this.size; 
     }
 
     public static void main(String[] args) {
