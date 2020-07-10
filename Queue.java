@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 // This program implements QUEUE using doubly-linked-list
 
 // to run, execute the following command (need to compile DoublyLinkedList.java too):  
@@ -13,7 +15,9 @@
 // - isEmpty()          --> boolean                                                 O(1)
 // - getSize()          --> int                                                     O(1)
 
-class Queue<T> {
+import java.util.Iterator;
+
+class Queue<T> implements Iterable {
     private DoublyLinkedList<T> dll;
 
     public Queue() {
@@ -53,6 +57,11 @@ class Queue<T> {
         return this.dll.getSize();
     }
 
+    @Override
+    public Iterator iterator() {
+        return this.dll.iterator();
+    }
+
     public static void main(String[] args) {
         Queue<Integer> queue = new Queue<>();
         System.out.println(queue);
@@ -69,20 +78,27 @@ class Queue<T> {
         // queue.dequeue();
         // System.out.println(queue);
 
-        System.out.println(queue.peek());
+        // System.out.println(queue.peek());
 
-        System.out.println(queue.remove(444));
+        // System.out.println(queue.remove(444));
+        // System.out.println(queue);
+
+        // System.out.println(queue.remove(4));
+        // System.out.println(queue);
+
+        // System.out.println(queue.contains(5));
+        // System.out.println(queue.contains(55));
+
+        // System.out.println(queue.isEmpty());
+        // queue = new Queue<>();
+        // System.out.println(queue.isEmpty());
+
         System.out.println(queue);
 
-        System.out.println(queue.remove(4));
-        System.out.println(queue);
-
-        System.out.println(queue.contains(5));
-        System.out.println(queue.contains(55));
-
-        System.out.println(queue.isEmpty());
-        queue = new Queue<>();
-        System.out.println(queue.isEmpty());
+        Iterator itr = queue.iterator();
+        while (itr.hasNext()) {
+            System.out.println(itr.next());
+        }
 
     }
 }
