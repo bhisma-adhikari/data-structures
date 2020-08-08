@@ -58,7 +58,7 @@ class Queue<T> implements Iterable {
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return this.dll.iterator();
     }
 
