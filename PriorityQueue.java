@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
-
 // This program implements the data-structure Priority Queue using min-heap.
 // Priority queue is an abstract data structure. 
 
@@ -18,6 +14,10 @@ import java.util.Arrays;
 //                                                has the highest priority for removal 
 // peek()           --> element     O(1)        : returns root element 
 // contains(element)--> boolean     O(n)        : checks if the element is contained in the PQ
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 
 class PriorityQueue<T extends Comparable> {
     private int heapSize; // current number of elements
@@ -36,7 +36,7 @@ class PriorityQueue<T extends Comparable> {
         String str = "empty heap";
         if (this.heapSize > 0) {
             str = "";
-            int levels = (int) Math.ceil((Math.log(this.heapSize)) / (Math.log(2)));
+            int levels = (int)((Math.log(this.heapSize))/(Math.log(2))) + 1; 
             int startIndex = 0;
             for (int i = 0; i < levels; i++) {
                 int nElemMax = (int) Math.pow(2, i);
