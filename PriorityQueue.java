@@ -199,6 +199,7 @@ class PriorityQueue<T extends Comparable> {
         PriorityQueue<Integer> pq = new PriorityQueue<>(elements);
         System.out.println(pq);
         System.out.println(pq.poll());
+        System.out.println();
         System.out.println(pq);
         System.out.println(pq.peek());
         System.out.println(pq.contains(54));
